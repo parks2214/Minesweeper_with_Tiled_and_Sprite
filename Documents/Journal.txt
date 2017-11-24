@@ -1,0 +1,58 @@
+All journal entries relating to ButtonMenu
+
+October 23, 2017
+-Starting to examine Button and MenuG to merge them, without using Scene2d
+
+October 24, 2017
+-continuing with ButtonMenu
+
+October 25, 2017
+-deleted ButtonMenu and retrying it with a different structure
+
+October 26, 2017
+-importing the programs doesn't work for some reason.
+
+October 27, 2017
+-restarting again, moving the hit detection from Button into the Screens from MenuG
+
+October 31, 2017
+-trying to structure Journal into the program files for ButtonMenu
+
+November 3, 2017
+-setFlip() doesn't work on BitmapFont.  Next course of action will be to embed text within the sprites, which i CAN flip using setFlip.
+-getting a NullPointerException when running ButtonMenu, investigating...
+
+November 6, 2017
+-still unable to run ButtonMenu on ScrGameover, where the hit detection code is
+
+November 7, 2017
+-Mr Grondin reviewed Status Report 3 and went over the code, and moved all of the declarations from create() to show(), and now it works.
+-Now to make hit detection work
+
+November 8, 2017
+-updating every screen to show a sprite, implementing hit detection tomorrow
+
+November 9, 2017
+-Cleaned up the Screens to prepare them for hit detection
+-trying to implement hit detection on Game Over Screen
+
+November 10, 2017
+-trying to put 2 buttons on GameOver, cleaned up the Play sprite
+
+November 13, 2017
+-There are now 2 buttons on GameOver, hit detection on both, but UpdateState on the methods results in error, listed below
+-non-static method updateState(int) cannot be referenced from a static context
+-starting to implement hit detection on ScrMenu
+-screen play and options are having errors parsing the file
+-the Play Screen doesn't detect hits
+
+November 14, 2017
+-comparing ScrMenu and ScrPlay to determine any errors that would prevent it from being run
+-forgot to set the inputprocessor to (this), that fixed the hit detection errors on play
+-Changing isHit() back to a boolean method, more scaleable that way
+-gamMenu.updateState() works, I had to use the gamMenu, not the GamMenu.  gamMenu was declared inside the 
+
+// New Copy:  MenuButton2 //
+
+November 24, 2017
+-made a new copy of MenuButton to experiment with a Button Class
