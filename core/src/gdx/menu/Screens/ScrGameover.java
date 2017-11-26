@@ -13,6 +13,7 @@ import gdx.menu.GamMenu;
 
 
 public class ScrGameover implements Screen, InputProcessor {
+    Button btnMenu, btnPlay;
     OrthographicCamera oc;
     Texture txButtonM, txButtonP;
     GamMenu gamMenu;
@@ -29,11 +30,12 @@ public class ScrGameover implements Screen, InputProcessor {
 	oc.setToOrtho(true, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
         oc.update();
         batch = new SpriteBatch();
-        txButtonP = new Texture("Play.jpg");
+        btnPlay = new Button(200, 100, 0, Gdx.graphics.getHeight()-100, txButtonP);
         txButtonM = new Texture("Menu.jpg");
+        /*txButtonP = new Texture("Play.jpg");
         sprButtonPlay = new Sprite(txButtonP);
         sprButtonPlay.setFlip(false, true);
-        sprButtonPlay.setY(Gdx.graphics.getHeight()-sprButtonPlay.getHeight());
+        sprButtonPlay.setY(Gdx.graphics.getHeight()-sprButtonPlay.getHeight());*/
         sprButtonMenu = new Sprite(txButtonM);
         sprButtonMenu.setFlip(false, true);
         sprButtonMenu.setX(Gdx.graphics.getWidth()-sprButtonMenu.getWidth());
@@ -46,7 +48,8 @@ public class ScrGameover implements Screen, InputProcessor {
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
         batch.begin();
         batch.setProjectionMatrix(oc.combined);
-        sprButtonPlay.draw(batch);
+        //sprButtonPlay.draw(batch);
+        btnPlay.draw(batch);
         sprButtonMenu.draw(batch);
         batch.end();
     }
@@ -102,7 +105,7 @@ public class ScrGameover implements Screen, InputProcessor {
     public boolean touchDown(int screenX, int screenY, int pointer, int button) {
         if (button == Input.Buttons.LEFT) {
 			//System.out.println(screenX +" " + screenY);
-			if (isHit(screenX, screenY, sprButtonPlay)) {
+			if (isHit(screenX, screenY, btnPlay)) {
                             gamMenu.updateState(1);
                             System.out.println("Hit Play");
                         } else if(isHit(screenX, screenY, sprButtonMenu)){

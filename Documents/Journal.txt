@@ -56,3 +56,9 @@ November 14, 2017
 
 November 24, 2017
 -made a new copy of MenuButton to experiment with a Button Class
+
+November 25, 2017
+-Creating a Button class, working on understanding inheritance
+
+November 26, 2017
+-The Button class isn't working, unsure how to fix it
