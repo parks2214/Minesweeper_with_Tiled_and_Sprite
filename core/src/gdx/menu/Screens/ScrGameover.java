@@ -15,10 +15,10 @@ import gdx.menu.GamMenu;
 public class ScrGameover implements Screen, InputProcessor {
     Button btnMenu, btnPlay;
     OrthographicCamera oc;
-    Texture txButtonM, txButtonP;
+    Texture txButtonM, txButtonP, txNamQ;
     GamMenu gamMenu;
     SpriteBatch batch;
-    Sprite sprButtonMenu, sprButtonPlay;
+    Sprite sprButtonMenu, sprButtonPlay, sprNamQuit;
     
     public ScrGameover(GamMenu _gamMenu) {  //Referencing the main class.
         gamMenu = _gamMenu;
@@ -36,6 +36,11 @@ public class ScrGameover implements Screen, InputProcessor {
         sprButtonPlay = new Sprite(txButtonP);
         sprButtonPlay.setFlip(false, true);
         sprButtonPlay.setY(Gdx.graphics.getHeight()-sprButtonPlay.getHeight());*/
+        txNamQ = new Texture("Q.jpg");
+        sprNamQuit = new Sprite(txNamQ);
+        sprNamQuit.setFlip(false, true);
+        sprNamQuit.setSize(100,100);
+        sprNamQuit.setPosition(Gdx.graphics.getWidth()/2, Gdx.graphics.getHeight()/2);
         sprButtonMenu = new Sprite(txButtonM);
         sprButtonMenu.setFlip(false, true);
         sprButtonMenu.setX(Gdx.graphics.getWidth()-sprButtonMenu.getWidth());
@@ -51,6 +56,7 @@ public class ScrGameover implements Screen, InputProcessor {
         //sprButtonPlay.draw(batch);
         btnPlay.draw(batch);
         sprButtonMenu.draw(batch);
+        sprNamQuit.draw(batch);
         batch.end();
     }
     

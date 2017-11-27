@@ -16,8 +16,8 @@ public class ScrPlay implements Screen, InputProcessor {
     GamMenu gamMenu;
     OrthographicCamera oc;
     SpriteBatch batch;
-    Texture txButtonG, txButtonT;
-    Sprite sprButtonQuit, sprButtonTools;
+    Texture txButtonG, txButtonT, txNamP;
+    Sprite sprButtonQuit, sprButtonTools, sprNamP;
     
     public ScrPlay(GamMenu _gamMenu) {  //Referencing the main class.
         gamMenu = _gamMenu;
@@ -29,6 +29,11 @@ public class ScrPlay implements Screen, InputProcessor {
         oc.setToOrtho(true, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
         oc.update();
         batch = new SpriteBatch();
+        txNamP = new Texture("P.jpg");
+        sprNamP = new Sprite(txNamP);
+        sprNamP.setSize(60,80);
+        sprNamP.setFlip(false, true);
+        sprNamP.setPosition(Gdx.graphics.getWidth()/2 - 30, Gdx.graphics.getHeight()/2 - 40);
         txButtonT = new Texture("Tools.jpg");
         txButtonG = new Texture("Quit.jpg");
         sprButtonQuit = new Sprite(txButtonG);
@@ -49,6 +54,7 @@ public class ScrPlay implements Screen, InputProcessor {
         batch.setProjectionMatrix(oc.combined);
         sprButtonQuit.draw(batch);
         sprButtonTools.draw(batch);
+        sprNamP.draw(batch);
         batch.end();
 
     }
