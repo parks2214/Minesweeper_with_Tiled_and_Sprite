@@ -14,10 +14,10 @@ import gdx.menu.GamMenu;
 public class ScrMenu implements Screen, InputProcessor {
 
     GamMenu gamMenu;
-    Texture txButtonP, txButtonT;
+    Texture txButtonP, txButtonT, txNamM;
     OrthographicCamera oc;
     SpriteBatch batch;
-    Sprite sprButtonPlay, sprButtonTools;
+    Sprite sprButtonPlay, sprButtonTools, sprNamM;
 
     public ScrMenu(GamMenu _gamMenu) {  //Referencing the main class.
         gamMenu = _gamMenu;
@@ -38,6 +38,11 @@ public class ScrMenu implements Screen, InputProcessor {
         sprButtonTools.setFlip(false, true);
         sprButtonTools.setY(Gdx.graphics.getHeight() - sprButtonTools.getHeight());
         sprButtonTools.setX(Gdx.graphics.getWidth() - sprButtonTools.getWidth());
+        txNamM = new Texture("M.jpg");
+        sprNamM = new Sprite(txNamM);
+        sprNamM.setFlip(false, true);
+        sprNamM.setSize(60, 80);
+        sprNamM.setPosition(Gdx.graphics.getWidth()/2 - 30, Gdx.graphics.getHeight()/2 - 40);
         Gdx.input.setInputProcessor(this);
     }
 
@@ -49,6 +54,7 @@ public class ScrMenu implements Screen, InputProcessor {
         batch.setProjectionMatrix(oc.combined);
         sprButtonPlay.draw(batch);
         sprButtonTools.draw(batch);
+        sprNamM.draw(batch);
         batch.end();
     }
 

@@ -15,8 +15,8 @@ public class ScrTools implements Screen, InputProcessor {
 
     GamMenu gamMenu;
     OrthographicCamera oc;
-    Texture txButtonM, txButtonQ;
-    Sprite sprButtonMenu, sprButtonQuit;
+    Texture txButtonM, txButtonQ, txNamT;
+    Sprite sprButtonMenu, sprButtonQuit, sprNamT;
     SpriteBatch batch;
 
     public ScrTools(GamMenu _gamMenu) {
@@ -38,6 +38,11 @@ public class ScrTools implements Screen, InputProcessor {
         sprButtonQuit.setFlip(false, true);
         sprButtonQuit.setY(Gdx.graphics.getHeight() - sprButtonQuit.getHeight());
         sprButtonQuit.setX(Gdx.graphics.getWidth() - sprButtonQuit.getWidth());
+        txNamT = new Texture("T.jpg");
+        sprNamT = new Sprite(txNamT);
+        sprNamT.setFlip(false, true);
+        sprNamT.setSize(60, 80);
+        sprNamT.setPosition(Gdx.graphics.getWidth()/2 - 30, Gdx.graphics.getHeight()/2 - 40);
         Gdx.input.setInputProcessor(this);
     }
 
@@ -49,6 +54,7 @@ public class ScrTools implements Screen, InputProcessor {
         batch.setProjectionMatrix(oc.combined);
         sprButtonMenu.draw(batch);
         sprButtonQuit.draw(batch);
+        sprNamT.draw(batch);
         batch.end();
     }
 
