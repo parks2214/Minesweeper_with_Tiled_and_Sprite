@@ -15,10 +15,10 @@ import gdx.menu.GamMenu;
 public class ScrGameover implements Screen, InputProcessor {
     Button btnMenu, btnPlay;
     OrthographicCamera oc;
-    Texture txButtonM, txButtonP, txNamQ;
+    Texture txNamQ;
     GamMenu gamMenu;
     SpriteBatch batch;
-    Sprite sprButtonMenu, sprButtonPlay, sprNamQuit;
+    Sprite sprNamQuit;
     
     public ScrGameover(GamMenu _gamMenu) {  //Referencing the main class.
         gamMenu = _gamMenu;
@@ -30,21 +30,13 @@ public class ScrGameover implements Screen, InputProcessor {
 	oc.setToOrtho(true, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
         oc.update();
         batch = new SpriteBatch();
-        btnPlay = new Button(200, 100, 0, Gdx.graphics.getHeight()-100, txButtonP);
-        txButtonM = new Texture("Menu.jpg");
-        /*txButtonP = new Texture("Play.jpg");
-        sprButtonPlay = new Sprite(txButtonP);
-        sprButtonPlay.setFlip(false, true);
-        sprButtonPlay.setY(Gdx.graphics.getHeight()-sprButtonPlay.getHeight());*/
+        btnPlay = new Button(100, 50, 0, Gdx.graphics.getHeight()-50, "Play.jpg");
+        btnMenu = new Button(100, 50,Gdx.graphics.getWidth()-100, Gdx.graphics.getHeight()-50, "Menu.jpg");
         txNamQ = new Texture("Q.jpg");
         sprNamQuit = new Sprite(txNamQ);
         sprNamQuit.setFlip(false, true);
-        sprNamQuit.setSize(100,100);
-        sprNamQuit.setPosition(Gdx.graphics.getWidth()/2, Gdx.graphics.getHeight()/2);
-        sprButtonMenu = new Sprite(txButtonM);
-        sprButtonMenu.setFlip(false, true);
-        sprButtonMenu.setX(Gdx.graphics.getWidth()-sprButtonMenu.getWidth());
-        sprButtonMenu.setY(Gdx.graphics.getHeight()-sprButtonMenu.getHeight());
+        sprNamQuit.setSize(60, 80);
+        sprNamQuit.setPosition(Gdx.graphics.getWidth()/2 - 30, Gdx.graphics.getHeight()/2 - 40);
         Gdx.input.setInputProcessor(this);
     }
     @Override
@@ -53,9 +45,8 @@ public class ScrGameover implements Screen, InputProcessor {
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
         batch.begin();
         batch.setProjectionMatrix(oc.combined);
-        //sprButtonPlay.draw(batch);
         btnPlay.draw(batch);
-        sprButtonMenu.draw(batch);
+        btnMenu.draw(batch);
         sprNamQuit.draw(batch);
         batch.end();
     }
@@ -88,8 +79,7 @@ public class ScrGameover implements Screen, InputProcessor {
     @Override
     public void dispose() {
         batch.dispose();
-        txButtonM.dispose();
-        txButtonP.dispose();
+        txNamQ.dispose();
     }
 
     @Override
@@ -109,16 +99,16 @@ public class ScrGameover implements Screen, InputProcessor {
 
     @Override
     public boolean touchDown(int screenX, int screenY, int pointer, int button) {
-        if (button == Input.Buttons.LEFT) {
+       /* if (button == Input.Buttons.LEFT) {
 			//System.out.println(screenX +" " + screenY);
 			if (isHit(screenX, screenY, btnPlay)) {
                             gamMenu.updateState(1);
                             System.out.println("Hit Play");
-                        } else if(isHit(screenX, screenY, sprButtonMenu)){
+                        } else if(isHit(screenX, screenY, btnMenu)){
                             gamMenu.updateState(0);
                             System.out.println("Hit Menu");
 			}
-		}
+		}*/
 		return false;
     }
 
@@ -141,11 +131,11 @@ public class ScrGameover implements Screen, InputProcessor {
     public boolean scrolled(int amount) {
         return false;
     }
-    public boolean isHit(int nX, int nY, Sprite sprBtn){
+    /*public boolean isHit(int nX, int nY, Sprite sprBtn){
         if (nX > sprBtn.getX() && nX < sprBtn.getX() + sprBtn.getWidth() && nY > sprBtn.getY() && nY < sprBtn.getY() + sprBtn.getHeight()) {
             return true;
         } else {
             return false;
         }
-    }
+    }*/
 }    

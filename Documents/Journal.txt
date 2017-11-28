@@ -66,3 +66,5 @@ November 26, 2017
 
 November 28, 2017
 -Continuing to label screens, Button class still not working
+-It works on Game over screen, going to implement Hit detection in class
+-Shows error in Screen when calling Button, but works properly
