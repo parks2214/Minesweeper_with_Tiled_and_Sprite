@@ -12,7 +12,7 @@ import com.badlogic.gdx.graphics.g2d.Sprite;
 import gdx.menu.GamMenu;
 
 public class ScrTools implements Screen, InputProcessor {
-
+    Button btnMenu, btnQuit;
     GamMenu gamMenu;
     OrthographicCamera oc;
     Texture txButtonM, txButtonQ, txNamT;

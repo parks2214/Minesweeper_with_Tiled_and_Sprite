@@ -12,12 +12,12 @@ import com.badlogic.gdx.graphics.OrthographicCamera;
 import gdx.menu.GamMenu;
 
 public class ScrPlay implements Screen, InputProcessor {
-
+    Button btnQuit, btnTools;
     GamMenu gamMenu;
     OrthographicCamera oc;
     SpriteBatch batch;
-    Texture txButtonG, txButtonT, txNamP;
-    Sprite sprButtonQuit, sprButtonTools, sprNamP;
+    Texture txNamP;
+    Sprite sprNamP;
     
     public ScrPlay(GamMenu _gamMenu) {  //Referencing the main class.
         gamMenu = _gamMenu;
@@ -34,15 +34,8 @@ public class ScrPlay implements Screen, InputProcessor {
         sprNamP.setSize(60,80);
         sprNamP.setFlip(false, true);
         sprNamP.setPosition(Gdx.graphics.getWidth()/2 - 30, Gdx.graphics.getHeight()/2 - 40);
-        txButtonT = new Texture("Tools.jpg");
-        txButtonG = new Texture("Quit.jpg");
-        sprButtonQuit = new Sprite(txButtonG);
-        sprButtonQuit.setFlip(false, true);
-        sprButtonQuit.setY(Gdx.graphics.getHeight() - sprButtonQuit.getHeight());
-        sprButtonTools = new Sprite(txButtonT);
-        sprButtonTools.setFlip(false, true);
-        sprButtonTools.setX(Gdx.graphics.getWidth() - sprButtonTools.getWidth());
-        sprButtonTools.setY(Gdx.graphics.getHeight() - sprButtonTools.getHeight());
+        btnTools = new Button(100, 50, Gdx.graphics.getWidth() - 100, Gdx.graphics.getHeight() - 50, "Tools.jpg");
+        btnQuit = new Button(100, 50, 0, Gdx.graphics.getHeight() - 50, "Quit.jpg");
         Gdx.input.setInputProcessor(this);
     }
 
@@ -52,8 +45,8 @@ public class ScrPlay implements Screen, InputProcessor {
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
         batch.begin();
         batch.setProjectionMatrix(oc.combined);
-        sprButtonQuit.draw(batch);
-        sprButtonTools.draw(batch);
+        btnTools.draw(batch);
+        btnQuit.draw(batch);
         sprNamP.draw(batch);
         batch.end();
 
@@ -78,8 +71,7 @@ public class ScrPlay implements Screen, InputProcessor {
     @Override
     public void dispose() {
         batch.dispose();
-        txButtonG.dispose();
-        txButtonT.dispose();
+        txNamP.dispose();
     }
 
     @Override
@@ -101,10 +93,10 @@ public class ScrPlay implements Screen, InputProcessor {
     public boolean touchDown(int screenX, int screenY, int pointer, int button) {
         if (button == Input.Buttons.LEFT) {
             //System.out.println(screenX +" " + screenY);
-            if (isHit(screenX, screenY, sprButtonTools)) {
+            if (isHit(screenX, screenY, btnTools)) {
                 gamMenu.updateState(3);
                 System.out.println("Hit Tools");
-            } else if (isHit(screenX, screenY, sprButtonQuit)) {
+            } else if (isHit(screenX, screenY, btnQuit)) {
                 gamMenu.updateState(2);
                 System.out.println("Hit Quit");
             } else {

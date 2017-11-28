@@ -12,12 +12,12 @@ import com.badlogic.gdx.graphics.OrthographicCamera;
 import gdx.menu.GamMenu;
 
 public class ScrMenu implements Screen, InputProcessor {
-
+    Button btnPlay, btnTools;
     GamMenu gamMenu;
     Texture txButtonP, txButtonT, txNamM;
     OrthographicCamera oc;
     SpriteBatch batch;
-    Sprite sprButtonPlay, sprButtonTools, sprNamM;
+    Sprite sprNamM;
 
     public ScrMenu(GamMenu _gamMenu) {  //Referencing the main class.
         gamMenu = _gamMenu;
@@ -29,15 +29,8 @@ public class ScrMenu implements Screen, InputProcessor {
         oc.setToOrtho(true, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
         oc.update();
         batch = new SpriteBatch();
-        txButtonP = new Texture("Play.jpg");
-        txButtonT = new Texture("Tools.jpg");
-        sprButtonPlay = new Sprite(txButtonP);
-        sprButtonPlay.setFlip(false, true);
-        sprButtonPlay.setY(Gdx.graphics.getHeight() - sprButtonPlay.getHeight());
-        sprButtonTools = new Sprite(txButtonT);
-        sprButtonTools.setFlip(false, true);
-        sprButtonTools.setY(Gdx.graphics.getHeight() - sprButtonTools.getHeight());
-        sprButtonTools.setX(Gdx.graphics.getWidth() - sprButtonTools.getWidth());
+        btnPlay = new Button(100, 50, 0, Gdx.graphics.getHeight() - 50, "Play.jpg");
+        btnTools = new Button(100, 50, Gdx.graphics.getWidth() - 100, Gdx.graphics.getHeight() - 50, "Tools.jpg");
         txNamM = new Texture("M.jpg");
         sprNamM = new Sprite(txNamM);
         sprNamM.setFlip(false, true);
@@ -52,9 +45,9 @@ public class ScrMenu implements Screen, InputProcessor {
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
         batch.begin();
         batch.setProjectionMatrix(oc.combined);
-        sprButtonPlay.draw(batch);
-        sprButtonTools.draw(batch);
         sprNamM.draw(batch);
+        btnPlay.draw(batch);
+        btnTools.draw(batch);
         batch.end();
     }
 
@@ -77,8 +70,7 @@ public class ScrMenu implements Screen, InputProcessor {
     @Override
     public void dispose() {
         batch.dispose();
-        txButtonP.dispose();
-        txButtonT.dispose();
+        txNamM.dispose();
     }
 
     @Override
@@ -99,10 +91,10 @@ public class ScrMenu implements Screen, InputProcessor {
     @Override
     public boolean touchDown(int screenX, int screenY, int pointer, int button) {
         if (button == Input.Buttons.LEFT) {
-            if(isHit(screenX, screenY, sprButtonPlay)){
+            if(isHit(screenX, screenY, btnPlay)){
                 System.out.println("Hit Play");
                 gamMenu.updateState(1);
-            }else if(isHit(screenX, screenY, sprButtonTools)){
+            }else if(isHit(screenX, screenY, btnTools)){
                 System.out.println("Hit Tools");
                 gamMenu.updateState(3);
             }
