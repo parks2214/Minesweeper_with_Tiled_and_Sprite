@@ -131,11 +131,11 @@ public class ScrGameover implements Screen, InputProcessor {
     public boolean scrolled(int amount) {
         return false;
     }
-    /*public boolean isHit(int nX, int nY, Sprite sprBtn){
+    public boolean isHit(int nX, int nY, Sprite sprBtn){
         if (nX > sprBtn.getX() && nX < sprBtn.getX() + sprBtn.getWidth() && nY > sprBtn.getY() && nY < sprBtn.getY() + sprBtn.getHeight()) {
             return true;
         } else {
             return false;
         }
-    }*/
+    }
 }    

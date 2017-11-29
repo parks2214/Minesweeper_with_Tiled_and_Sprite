@@ -29,15 +29,8 @@ public class ScrTools implements Screen, InputProcessor {
         oc = new OrthographicCamera(Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
         oc.setToOrtho(true, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
         oc.update();
-        txButtonM = new Texture("Menu.jpg");
-        sprButtonMenu = new Sprite(txButtonM);
-        sprButtonMenu.setFlip(false, true);
-        sprButtonMenu.setY(Gdx.graphics.getHeight() - sprButtonMenu.getHeight());
-        txButtonQ = new Texture("Quit.jpg");
-        sprButtonQuit = new Sprite(txButtonQ);
-        sprButtonQuit.setFlip(false, true);
-        sprButtonQuit.setY(Gdx.graphics.getHeight() - sprButtonQuit.getHeight());
-        sprButtonQuit.setX(Gdx.graphics.getWidth() - sprButtonQuit.getWidth());
+        btnMenu = new Button(100, 50, 0, Gdx.graphics.getHeight() - 50, "Menu.jpg");
+        btnQuit = new Button(100, 50, Gdx.graphics.getWidth() - 100, Gdx.graphics.getHeight() - 50, "Quit.jpg");
         txNamT = new Texture("T.jpg");
         sprNamT = new Sprite(txNamT);
         sprNamT.setFlip(false, true);
@@ -52,8 +45,8 @@ public class ScrTools implements Screen, InputProcessor {
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
         batch.begin();
         batch.setProjectionMatrix(oc.combined);
-        sprButtonMenu.draw(batch);
-        sprButtonQuit.draw(batch);
+        btnMenu.draw(batch);
+        btnQuit.draw(batch);
         sprNamT.draw(batch);
         batch.end();
     }
@@ -77,8 +70,7 @@ public class ScrTools implements Screen, InputProcessor {
     @Override
     public void dispose() {
         batch.dispose();
-        txButtonM.dispose();
-        txButtonQ.dispose();
+        txNamT.dispose();
     }
 
     @Override
@@ -100,10 +92,10 @@ public class ScrTools implements Screen, InputProcessor {
     public boolean touchDown(int screenX, int screenY, int pointer, int button) {
         if (button == Input.Buttons.LEFT) {
             //System.out.println(screenX +" " + screenY);
-            if (isHit(screenX, screenY, sprButtonMenu)) {
+            if (isHit(screenX, screenY, btnMenu)) {
                 gamMenu.updateState(0);
                 System.out.println("Hit Menu");
-            } else if (isHit(screenX, screenY, sprButtonQuit)) {
+            } else if (isHit(screenX, screenY, btnQuit)) {
                 gamMenu.updateState(2);
                 System.out.println("Hit Quit");
             } else {
