@@ -1,4 +1,5 @@
 package gdx.menu.Screens;
+
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
@@ -10,16 +11,15 @@ import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.Texture;
 import gdx.menu.GamMenu;
 
-
-
 public class ScrGameover implements Screen, InputProcessor {
+
     Button btnMenu, btnPlay;
     OrthographicCamera oc;
     Texture txNamQ;
     GamMenu gamMenu;
     SpriteBatch batch;
     Sprite sprNamQuit;
-    
+
     public ScrGameover(GamMenu _gamMenu) {  //Referencing the main class.
         gamMenu = _gamMenu;
     }
@@ -27,18 +27,19 @@ public class ScrGameover implements Screen, InputProcessor {
     @Override
     public void show() {
         oc = new OrthographicCamera(Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
-	oc.setToOrtho(true, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
+        oc.setToOrtho(true, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
         oc.update();
         batch = new SpriteBatch();
-        btnPlay = new Button(100, 50, 0, Gdx.graphics.getHeight()-50, "Play.jpg");
-        btnMenu = new Button(100, 50,Gdx.graphics.getWidth()-100, Gdx.graphics.getHeight()-50, "Menu.jpg");
+        btnPlay = new Button(100, 50, 0, Gdx.graphics.getHeight() - 50, "Play.jpg");
+        btnMenu = new Button(100, 50, Gdx.graphics.getWidth() - 100, Gdx.graphics.getHeight() - 50, "Menu.jpg");
         txNamQ = new Texture("Q.jpg");
         sprNamQuit = new Sprite(txNamQ);
         sprNamQuit.setFlip(false, true);
         sprNamQuit.setSize(60, 80);
-        sprNamQuit.setPosition(Gdx.graphics.getWidth()/2 - 30, Gdx.graphics.getHeight()/2 - 40);
+        sprNamQuit.setPosition(Gdx.graphics.getWidth() / 2 - 30, Gdx.graphics.getHeight() / 2 - 40);
         Gdx.input.setInputProcessor(this);
     }
+
     @Override
     public void render(float Delta) {
         Gdx.gl.glClearColor(0, 1, 1, 1); //Cyan background.
@@ -50,30 +51,25 @@ public class ScrGameover implements Screen, InputProcessor {
         sprNamQuit.draw(batch);
         batch.end();
     }
-    
+
     /*
      * UpdateState(0) for Menu
      * UpdateState(1) for Play
      */
-    
     @Override
     public void resize(int width, int height) {
-
     }
 
     @Override
     public void pause() {
-
     }
 
     @Override
     public void resume() {
-
     }
 
     @Override
     public void hide() {
-
     }
 
     @Override
@@ -99,17 +95,16 @@ public class ScrGameover implements Screen, InputProcessor {
 
     @Override
     public boolean touchDown(int screenX, int screenY, int pointer, int button) {
-       /* if (button == Input.Buttons.LEFT) {
-			//System.out.println(screenX +" " + screenY);
-			if (isHit(screenX, screenY, btnPlay)) {
-                            gamMenu.updateState(1);
-                            System.out.println("Hit Play");
-                        } else if(isHit(screenX, screenY, btnMenu)){
-                            gamMenu.updateState(0);
-                            System.out.println("Hit Menu");
-			}
-		}*/
-		return false;
+        if (button == Input.Buttons.LEFT) {
+            if (isHit(screenX, screenY, btnPlay)) {
+                gamMenu.updateState(1);
+                System.out.println("Hit Play");
+            } else if (isHit(screenX, screenY, btnMenu)) {
+                gamMenu.updateState(0);
+                System.out.println("Hit Menu");
+            }
+        }
+        return false;
     }
 
     @Override
@@ -131,11 +126,12 @@ public class ScrGameover implements Screen, InputProcessor {
     public boolean scrolled(int amount) {
         return false;
     }
-    public boolean isHit(int nX, int nY, Sprite sprBtn){
+
+    public boolean isHit(int nX, int nY, Sprite sprBtn) {
         if (nX > sprBtn.getX() && nX < sprBtn.getX() + sprBtn.getWidth() && nY > sprBtn.getY() && nY < sprBtn.getY() + sprBtn.getHeight()) {
             return true;
         } else {
             return false;
         }
     }
-}    
+}

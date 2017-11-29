@@ -12,6 +12,7 @@ import com.badlogic.gdx.graphics.OrthographicCamera;
 import gdx.menu.GamMenu;
 
 public class ScrMenu implements Screen, InputProcessor {
+
     Button btnPlay, btnTools;
     GamMenu gamMenu;
     Texture txButtonP, txButtonT, txNamM;
@@ -35,7 +36,7 @@ public class ScrMenu implements Screen, InputProcessor {
         sprNamM = new Sprite(txNamM);
         sprNamM.setFlip(false, true);
         sprNamM.setSize(60, 80);
-        sprNamM.setPosition(Gdx.graphics.getWidth()/2 - 30, Gdx.graphics.getHeight()/2 - 40);
+        sprNamM.setPosition(Gdx.graphics.getWidth() / 2 - 30, Gdx.graphics.getHeight() / 2 - 40);
         Gdx.input.setInputProcessor(this);
     }
 
@@ -91,17 +92,17 @@ public class ScrMenu implements Screen, InputProcessor {
     @Override
     public boolean touchDown(int screenX, int screenY, int pointer, int button) {
         if (button == Input.Buttons.LEFT) {
-            if(isHit(screenX, screenY, btnPlay)){
+            if (isHit(screenX, screenY, btnPlay)) {
                 System.out.println("Hit Play");
                 gamMenu.updateState(1);
-            }else if(isHit(screenX, screenY, btnTools)){
+            } else if (isHit(screenX, screenY, btnTools)) {
                 System.out.println("Hit Tools");
                 gamMenu.updateState(3);
             }
         }
         return false;
     }
-        
+
     @Override
     public boolean touchUp(int screenX, int screenY, int pointer, int button) {
         return false;
