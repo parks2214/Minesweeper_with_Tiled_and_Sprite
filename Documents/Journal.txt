@@ -74,3 +74,7 @@ November 29, 2017
 -Worked on implementing isHit() on button, unsure how to proceed.
 -At home, thinking about starting the exhibition
 -Creating a class for movable man
+
+November 30, 2017
+-Trying to put a Dude class in Play screen, but it doesn't want to accept the class, "Can't Find"
+-Ignoring Dude class for now, hit detection between sprites is not on play screen

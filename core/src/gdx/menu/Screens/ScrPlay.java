@@ -1,7 +1,6 @@
 package gdx.menu.Screens;
 
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.Input;
 import com.badlogic.gdx.InputProcessor;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.GL20;
@@ -13,13 +12,12 @@ import com.badlogic.gdx.Input;
 import gdx.menu.GamMenu;
 
 public class ScrPlay implements Screen, InputProcessor {
-    Button btnQuit, btnTools;
-    Dude dud1;
+    Button btnQuit, btnTools, dud1;
     GamMenu gamMenu;
     OrthographicCamera oc;
     SpriteBatch batch;
-    Texture txNamP;
-    Sprite sprNamP;
+    Texture txNamP, txBoye;
+    Sprite sprNamP, sprBoye;
     
     public ScrPlay(GamMenu _gamMenu) {  //Referencing the main class.
         gamMenu = _gamMenu;
@@ -36,7 +34,7 @@ public class ScrPlay implements Screen, InputProcessor {
         sprNamP.setSize(60,80);
         sprNamP.setFlip(false, true);
         sprNamP.setPosition(Gdx.graphics.getWidth()/2 - 30, Gdx.graphics.getHeight()/2 - 40);
-        dud1 = new Dude(50, 100, 500, 500, "boye.jpg");
+        dud1 = new Button(50, 100, 200, 250, "boye.jpg");
         btnTools = new Button(100, 50, Gdx.graphics.getWidth() - 100, Gdx.graphics.getHeight() - 50, "Tools.jpg");
         btnQuit = new Button(100, 50, 0, Gdx.graphics.getHeight() - 50, "Quit.jpg");
         Gdx.input.setInputProcessor(this);
@@ -46,15 +44,21 @@ public class ScrPlay implements Screen, InputProcessor {
     public void render(float delta) {
         Gdx.gl.glClearColor(.135f, .206f, .235f, 1); //blue background.
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
+        float fSx = dud1.getX();
+        float fSy = dud1.getY();
         if(Gdx.input.isKeyPressed(Input.Keys.LEFT)){
-            dud1.setX(dud1.getX() + 5);
-        }else if(Gdx.input.isKeyPressed(Input.Keys.RIGHT)){
             dud1.setX(dud1.getX() - 5);
+        }else if(Gdx.input.isKeyPressed(Input.Keys.RIGHT)){
+            dud1.setX(dud1.getX() + 5);
         }else if(Gdx.input.isKeyPressed(Input.Keys.DOWN)){
             dud1.setY(dud1.getY() + 5);
         }else if(Gdx.input.isKeyPressed(Input.Keys.UP)){
             dud1.setY(dud1.getY() - 5);
+         }
+        if(isHitS(dud1, sprNamP)){
+            dud1.setPosition(fSx, fSy);
         }
+        
         batch.begin();
         batch.setProjectionMatrix(oc.combined);
         btnTools.draw(batch);
@@ -85,6 +89,7 @@ public class ScrPlay implements Screen, InputProcessor {
     public void dispose() {
         batch.dispose();
         txNamP.dispose();
+        txBoye.dispose();
     }
 
     @Override
@@ -106,10 +111,10 @@ public class ScrPlay implements Screen, InputProcessor {
     public boolean touchDown(int screenX, int screenY, int pointer, int button) {
         if (button == Input.Buttons.LEFT) {
             //System.out.println(screenX +" " + screenY);
-            if (isHit(screenX, screenY, btnTools)) {
+            if (isHitB(screenX, screenY, btnTools)) {
                 gamMenu.updateState(3);
                 System.out.println("Hit Tools");
-            } else if (isHit(screenX, screenY, btnQuit)) {
+            } else if (isHitB(screenX, screenY, btnQuit)) {
                 gamMenu.updateState(2);
                 System.out.println("Hit Quit");
             } else {
@@ -138,11 +143,14 @@ public class ScrPlay implements Screen, InputProcessor {
         return false;
     }
 
-    public boolean isHit(int nX, int nY, Sprite sprBtn) {
+    public boolean isHitB(int nX, int nY, Sprite sprBtn) {
         if (nX > sprBtn.getX() && nX < sprBtn.getX() + sprBtn.getWidth() && nY > sprBtn.getY() && nY < sprBtn.getY() + sprBtn.getHeight()) {
             return true;
         } else {
             return false;
         }
+    }
+    public boolean isHitS(Sprite spr1, Sprite spr2){
+        return spr1.getBoundingRectangle().overlaps(spr2.getBoundingRectangle());
     }
 }
