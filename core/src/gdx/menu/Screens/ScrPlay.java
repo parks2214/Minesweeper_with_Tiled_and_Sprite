@@ -9,6 +9,7 @@ import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.OrthographicCamera;
+import com.badlogic.gdx.Input;
 import gdx.menu.GamMenu;
 
 public class ScrPlay implements Screen, InputProcessor {
@@ -45,11 +46,21 @@ public class ScrPlay implements Screen, InputProcessor {
     public void render(float delta) {
         Gdx.gl.glClearColor(.135f, .206f, .235f, 1); //blue background.
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
+        if(Gdx.input.isKeyPressed(Input.Keys.LEFT)){
+            dud1.setX(dud1.getX() + 5);
+        }else if(Gdx.input.isKeyPressed(Input.Keys.RIGHT)){
+            dud1.setX(dud1.getX() - 5);
+        }else if(Gdx.input.isKeyPressed(Input.Keys.DOWN)){
+            dud1.setY(dud1.getY() + 5);
+        }else if(Gdx.input.isKeyPressed(Input.Keys.UP)){
+            dud1.setY(dud1.getY() - 5);
+        }
         batch.begin();
         batch.setProjectionMatrix(oc.combined);
         btnTools.draw(batch);
         btnQuit.draw(batch);
         sprNamP.draw(batch);
+        dud1.draw(batch);
         batch.end();
 
     }
