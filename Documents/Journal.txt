@@ -72,4 +72,5 @@ November 28, 2017
 November 29, 2017
 -Button Class implemented on all screens
 -Worked on implementing isHit() on button, unsure how to proceed.
-
+-At home, thinking about starting the exhibition
+-Creating a class for movable man
