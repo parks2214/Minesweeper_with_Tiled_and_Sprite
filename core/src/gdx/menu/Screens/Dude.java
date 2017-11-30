@@ -9,6 +9,6 @@ public class Dude extends Sprite{
         super(new Texture(Gdx.files.internal(sFileName)));
         setPosition(nX, nY);
         setSize(nW, nH);
-        
+        setFlip(false, true);
     }
 }

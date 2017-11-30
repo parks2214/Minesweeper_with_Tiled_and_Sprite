@@ -35,6 +35,7 @@ public class ScrPlay implements Screen, InputProcessor {
         sprNamP.setSize(60,80);
         sprNamP.setFlip(false, true);
         sprNamP.setPosition(Gdx.graphics.getWidth()/2 - 30, Gdx.graphics.getHeight()/2 - 40);
+        dud1 = new Dude(50, 100, 500, 500, "boye.jpg");
         btnTools = new Button(100, 50, Gdx.graphics.getWidth() - 100, Gdx.graphics.getHeight() - 50, "Tools.jpg");
         btnQuit = new Button(100, 50, 0, Gdx.graphics.getHeight() - 50, "Quit.jpg");
         Gdx.input.setInputProcessor(this);
