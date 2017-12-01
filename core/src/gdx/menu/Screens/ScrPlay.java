@@ -16,8 +16,9 @@ public class ScrPlay implements Screen, InputProcessor {
     GamMenu gamMenu;
     OrthographicCamera oc;
     SpriteBatch batch;
-    Texture txNamP, txBoye;
+    Texture txNamP, txBoye, txWall;
     Sprite sprNamP, sprBoye;
+    Sprite arWall[] = new Sprite[4];
     
     public ScrPlay(GamMenu _gamMenu) {  //Referencing the main class.
         gamMenu = _gamMenu;
@@ -28,6 +29,19 @@ public class ScrPlay implements Screen, InputProcessor {
         oc = new OrthographicCamera(Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
         oc.setToOrtho(true, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
         oc.update();
+        txWall = new Texture("Wall.jpg");
+        for (int i = 0; i < arWall.length; i++) {
+            arWall[i] = new Sprite(txWall);
+        }
+        arWall[0].setSize(50, Gdx.graphics.getHeight() - 50);    //
+        arWall[0].setPosition(0, 0);
+        arWall[1].setSize(50, Gdx.graphics.getHeight() - 50);
+        arWall[1].setPosition(Gdx.graphics.getWidth() - 50, 0);
+        arWall[2].setSize(Gdx.graphics.getWidth(), 50);
+        arWall[2].setPosition(0,0);
+        arWall[3].setSize(Gdx.graphics.getWidth(), 50);
+        arWall[3].setPosition(0, Gdx.graphics.getHeight() - 100);
+        
         batch = new SpriteBatch();
         txNamP = new Texture("P.jpg");
         sprNamP = new Sprite(txNamP);
@@ -48,15 +62,23 @@ public class ScrPlay implements Screen, InputProcessor {
         float fSy = dud1.getY();
         if(Gdx.input.isKeyPressed(Input.Keys.LEFT)){
             dud1.setX(dud1.getX() - 5);
-        }else if(Gdx.input.isKeyPressed(Input.Keys.RIGHT)){
+        }
+        if(Gdx.input.isKeyPressed(Input.Keys.RIGHT)){
             dud1.setX(dud1.getX() + 5);
-        }else if(Gdx.input.isKeyPressed(Input.Keys.DOWN)){
+        }
+        if(Gdx.input.isKeyPressed(Input.Keys.DOWN)){
             dud1.setY(dud1.getY() + 5);
-        }else if(Gdx.input.isKeyPressed(Input.Keys.UP)){
+        }
+        if(Gdx.input.isKeyPressed(Input.Keys.UP)){
             dud1.setY(dud1.getY() - 5);
          }
         if(isHitS(dud1, sprNamP)){
             dud1.setPosition(fSx, fSy);
+        }
+        for (int i = 0; i < arWall.length; i++) {
+            if(isHitS(dud1, arWall[i])){
+                dud1.setPosition(fSx, fSy);
+            }
         }
         
         batch.begin();
@@ -65,6 +87,9 @@ public class ScrPlay implements Screen, InputProcessor {
         btnQuit.draw(batch);
         sprNamP.draw(batch);
         dud1.draw(batch);
+        for (int i = 0; i < arWall.length; i++) {
+            arWall[i].draw(batch);
+        }
         batch.end();
 
     }

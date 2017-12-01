@@ -79,3 +79,7 @@ November 30, 2017
 -Trying to put a Dude class in Play screen, but it doesn't want to accept the class, "Can't Find"
 -Ignoring Dude class for now, hit detection between sprites is not on play screen
 -Made the dude into a Button, because it's basically a sprite with less lines
+
+December 1, 2017
+-Adding walls from last year into Play Screen
+-Tried to make new Class for Wall, it doesn't recognize it (again)
