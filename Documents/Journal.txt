@@ -83,3 +83,7 @@ November 30, 2017
 December 1, 2017
 -Adding walls from last year into Play Screen
 -Tried to make new Class for Wall, it doesn't recognize it (again)
+
+December 4, 2017
+-Trying to make Wall Class, still doesn't recognize symbol :(
+-
