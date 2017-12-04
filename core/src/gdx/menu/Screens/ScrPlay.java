@@ -13,6 +13,7 @@ import gdx.menu.GamMenu;
 
 public class ScrPlay implements Screen, InputProcessor {
     Button btnQuit, btnTools, dud1;
+    Wall wall = new Wall[4];
     GamMenu gamMenu;
     OrthographicCamera oc;
     SpriteBatch batch;
