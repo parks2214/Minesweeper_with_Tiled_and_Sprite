@@ -12,15 +12,14 @@ import com.badlogic.gdx.Input;
 import gdx.menu.GamMenu;
 
 public class ScrPlay implements Screen, InputProcessor {
-
-    Button btnQuit, btnTools, dud1;
+    Dude dud1;
+    Button btnQuit, btnTools;
     Wall[] arWall = new Wall[4];
     GamMenu gamMenu;
     OrthographicCamera oc;
     SpriteBatch batch;
     Texture txNamP, txBoye, txWall;
     Sprite sprNamP, sprBoye;
-    //Wall arWall[] = new Sprite[4];
 
     public ScrPlay(GamMenu _gamMenu) {  //Referencing the main class.
         gamMenu = _gamMenu;
@@ -37,14 +36,13 @@ public class ScrPlay implements Screen, InputProcessor {
         arWall[1] = new Wall(50, Gdx.graphics.getHeight() - 50, Gdx.graphics.getWidth() - 50, 0);   //Right Wall
         arWall[2] = new Wall(50, Gdx.graphics.getHeight() - 50, 0, 0);     //Left Wall
         arWall[3] = new Wall(Gdx.graphics.getWidth(), 50, 0, Gdx.graphics.getHeight() - 100);       //Bottom Wall
-
         batch = new SpriteBatch();
         txNamP = new Texture("P.jpg");
         sprNamP = new Sprite(txNamP);
         sprNamP.setSize(60, 80);
         sprNamP.setFlip(false, true);
         sprNamP.setPosition(Gdx.graphics.getWidth() / 2 - 30, Gdx.graphics.getHeight() / 2 - 40);
-        dud1 = new Button(50, 100, 200, 250, "boye.jpg");
+        dud1 = new Dude(50, 100, 200, 250);
         btnTools = new Button(100, 50, Gdx.graphics.getWidth() - 100, Gdx.graphics.getHeight() - 50, "Tools.jpg");
         btnQuit = new Button(100, 50, 0, Gdx.graphics.getHeight() - 50, "Quit.jpg");
         Gdx.input.setInputProcessor(this);
@@ -76,7 +74,6 @@ public class ScrPlay implements Screen, InputProcessor {
                 dud1.setPosition(fSx, fSy);
             }
         }
-
         batch.begin();
         batch.setProjectionMatrix(oc.combined);
         btnTools.draw(batch);
