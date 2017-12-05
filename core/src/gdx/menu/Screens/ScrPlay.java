@@ -12,15 +12,16 @@ import com.badlogic.gdx.Input;
 import gdx.menu.GamMenu;
 
 public class ScrPlay implements Screen, InputProcessor {
+
     Button btnQuit, btnTools, dud1;
-    Wall wall = new Wall[4];
+    Wall[] arWall = new Wall[4];
     GamMenu gamMenu;
     OrthographicCamera oc;
     SpriteBatch batch;
     Texture txNamP, txBoye, txWall;
     Sprite sprNamP, sprBoye;
-    Sprite arWall[] = new Sprite[4];
-    
+    //Wall arWall[] = new Sprite[4];
+
     public ScrPlay(GamMenu _gamMenu) {  //Referencing the main class.
         gamMenu = _gamMenu;
     }
@@ -31,24 +32,18 @@ public class ScrPlay implements Screen, InputProcessor {
         oc.setToOrtho(true, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
         oc.update();
         txWall = new Texture("Wall.jpg");
-        for (int i = 0; i < arWall.length; i++) {
-            arWall[i] = new Sprite(txWall);
-        }
-        arWall[0].setSize(50, Gdx.graphics.getHeight() - 50);    //
-        arWall[0].setPosition(0, 0);
-        arWall[1].setSize(50, Gdx.graphics.getHeight() - 50);
-        arWall[1].setPosition(Gdx.graphics.getWidth() - 50, 0);
-        arWall[2].setSize(Gdx.graphics.getWidth(), 50);
-        arWall[2].setPosition(0,0);
-        arWall[3].setSize(Gdx.graphics.getWidth(), 50);
-        arWall[3].setPosition(0, Gdx.graphics.getHeight() - 100);
-        
+        //Setting up Walls
+        arWall[0] = new Wall(Gdx.graphics.getWidth(), 50, 0, 0);    //Top Wall
+        arWall[1] = new Wall(50, Gdx.graphics.getHeight() - 50, Gdx.graphics.getWidth() - 50, 0);   //Right Wall
+        arWall[2] = new Wall(50, Gdx.graphics.getHeight() - 50, 0, 0);     //Left Wall
+        arWall[3] = new Wall(Gdx.graphics.getWidth(), 50, 0, Gdx.graphics.getHeight() - 100);       //Bottom Wall
+
         batch = new SpriteBatch();
         txNamP = new Texture("P.jpg");
         sprNamP = new Sprite(txNamP);
-        sprNamP.setSize(60,80);
+        sprNamP.setSize(60, 80);
         sprNamP.setFlip(false, true);
-        sprNamP.setPosition(Gdx.graphics.getWidth()/2 - 30, Gdx.graphics.getHeight()/2 - 40);
+        sprNamP.setPosition(Gdx.graphics.getWidth() / 2 - 30, Gdx.graphics.getHeight() / 2 - 40);
         dud1 = new Button(50, 100, 200, 250, "boye.jpg");
         btnTools = new Button(100, 50, Gdx.graphics.getWidth() - 100, Gdx.graphics.getHeight() - 50, "Tools.jpg");
         btnQuit = new Button(100, 50, 0, Gdx.graphics.getHeight() - 50, "Quit.jpg");
@@ -61,27 +56,27 @@ public class ScrPlay implements Screen, InputProcessor {
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
         float fSx = dud1.getX();
         float fSy = dud1.getY();
-        if(Gdx.input.isKeyPressed(Input.Keys.LEFT)){
+        if (Gdx.input.isKeyPressed(Input.Keys.LEFT)) {
             dud1.setX(dud1.getX() - 5);
         }
-        if(Gdx.input.isKeyPressed(Input.Keys.RIGHT)){
+        if (Gdx.input.isKeyPressed(Input.Keys.RIGHT)) {
             dud1.setX(dud1.getX() + 5);
         }
-        if(Gdx.input.isKeyPressed(Input.Keys.DOWN)){
+        if (Gdx.input.isKeyPressed(Input.Keys.DOWN)) {
             dud1.setY(dud1.getY() + 5);
         }
-        if(Gdx.input.isKeyPressed(Input.Keys.UP)){
+        if (Gdx.input.isKeyPressed(Input.Keys.UP)) {
             dud1.setY(dud1.getY() - 5);
-         }
-        if(isHitS(dud1, sprNamP)){
+        }
+        if (isHitS(dud1, sprNamP)) {
             dud1.setPosition(fSx, fSy);
         }
         for (int i = 0; i < arWall.length; i++) {
-            if(isHitS(dud1, arWall[i])){
+            if (isHitS(dud1, arWall[i])) {
                 dud1.setPosition(fSx, fSy);
             }
         }
-        
+
         batch.begin();
         batch.setProjectionMatrix(oc.combined);
         btnTools.draw(batch);
@@ -176,7 +171,8 @@ public class ScrPlay implements Screen, InputProcessor {
             return false;
         }
     }
-    public boolean isHitS(Sprite spr1, Sprite spr2){
+
+    public boolean isHitS(Sprite spr1, Sprite spr2) {
         return spr1.getBoundingRectangle().overlaps(spr2.getBoundingRectangle());
     }
 }
