@@ -18,8 +18,8 @@ public class ScrPlay implements Screen, InputProcessor {
     GamMenu gamMenu;
     OrthographicCamera oc;
     SpriteBatch batch;
-    Texture txNamP, txBoye, txWall;
-    Sprite sprNamP, sprBoye;
+    Texture txNamP, txWall;
+    Sprite sprNamP;
 
     public ScrPlay(GamMenu _gamMenu) {  //Referencing the main class.
         gamMenu = _gamMenu;
@@ -107,7 +107,6 @@ public class ScrPlay implements Screen, InputProcessor {
     public void dispose() {
         batch.dispose();
         txNamP.dispose();
-        txBoye.dispose();
     }
 
     @Override

@@ -91,3 +91,4 @@ December 5, 2017
 -Asking Grondin about Class problems
 -Fixed, not declaring class properly, wall class now works
 -Looking at Bradley's code for hints on how to do Animation
+-For some reason, Dude and Wall class declarations are still being 
