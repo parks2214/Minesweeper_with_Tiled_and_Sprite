@@ -6,20 +6,22 @@ import com.badlogic.gdx.InputProcessor;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
+import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import gdx.menu.GamMenu;
 
-public class ScrTools implements Screen, InputProcessor {
+public class ScrAnimation implements Screen, InputProcessor {
     Button btnMenu, btnQuit;
     GamMenu gamMenu;
     OrthographicCamera oc;
     Texture txButtonM, txButtonQ, txNamT;
     Sprite sprButtonMenu, sprButtonQuit, sprNamT;
     SpriteBatch batch;
-
-    public ScrTools(GamMenu _gamMenu) {
+    Animation arDude[];
+    
+    public ScrAnimation(GamMenu _gamMenu) {
         gamMenu = _gamMenu;
     }
 
@@ -36,6 +38,11 @@ public class ScrTools implements Screen, InputProcessor {
         sprNamT.setFlip(false, true);
         sprNamT.setSize(60, 80);
         sprNamT.setPosition(Gdx.graphics.getWidth()/2 - 30, Gdx.graphics.getHeight()/2 - 40);
+        //Animation Stuff
+        float fW, fH;
+        //Texture txSheet = new Texture("TestSpriteSheet.png");
+        
+        
         Gdx.input.setInputProcessor(this);
     }
 
