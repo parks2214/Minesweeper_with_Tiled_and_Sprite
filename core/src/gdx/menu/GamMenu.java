@@ -12,7 +12,7 @@ public class GamMenu extends Game {
     ScrMenu scrMenu;
     ScrPlay scrPlay;
     ScrGameover scrGameover;
-    ScrAnimation scrTools;
+    ScrAnimation scrAnimation;
     int nScreen; // 0 for menu, 1 for play, 2 for gameover, 3 for options
     
     public void updateState(int _nScreen) {
@@ -24,7 +24,7 @@ public class GamMenu extends Game {
         } else if (nScreen ==2) {
             setScreen(scrGameover);
         } else if (nScreen == 3){
-            setScreen(scrTools);
+            setScreen(scrAnimation);
         }
     }
 
@@ -35,7 +35,7 @@ public class GamMenu extends Game {
         scrMenu = new ScrMenu(this);
         scrPlay = new ScrPlay(this);
         scrGameover = new ScrGameover(this);
-        scrTools = new ScrAnimation(this);
+        scrAnimation = new ScrAnimation(this);
         updateState(0);
     }
 

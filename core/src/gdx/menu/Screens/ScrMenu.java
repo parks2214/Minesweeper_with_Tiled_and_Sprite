@@ -96,7 +96,7 @@ public class ScrMenu implements Screen, InputProcessor {
                 System.out.println("Hit Play");
                 gamMenu.updateState(1);
             } else if (isHit(screenX, screenY, btnAni)) {
-                System.out.println("Hit Tools");
+                System.out.println("Hit Animation");
                 gamMenu.updateState(3);
             }
         }
