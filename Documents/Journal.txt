@@ -96,3 +96,6 @@ December 5, 2017
 December 6, 2017
 -Picking apart Bradley's code for Animation help
 -Made a spritesheet for Animation, cloned brad's code to gitHub in order to work on Animation @ home
+
+December 11, 2017
+-Actually starting to merge Animation code from brad's code

@@ -41,7 +41,8 @@ public class ScrAnimation implements Screen, InputProcessor {
         //Animation Stuff
         float fW, fH;
         Texture txSheet = new Texture("AniTest.png");
-        
+        fW = txSheet.getWidth() / 3;
+        fH = txSheet.getHeight() / 4;
         
         Gdx.input.setInputProcessor(this);
     }
