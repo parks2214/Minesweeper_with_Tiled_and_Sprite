@@ -1,5 +1,6 @@
 package gdx.menu.Screens;
 
+import com.minesweeper.Screens.Button;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
